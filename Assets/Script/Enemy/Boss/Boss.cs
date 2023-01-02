@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
 
     float timer = 0;
     float timeMove = 0.85f;
-    public float speed = 0.2f;
+    public float speed;
     int step = 0;
     
     void Update()

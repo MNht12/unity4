@@ -23,10 +23,4 @@ public class CanvasScript : MonoBehaviour
         victoryUI.SetActive(true);
     }
 
-    // public void mainMenu()
-    // {
-    //     SceneManager.LoadScene("MainMenu")
-    // }
-
-
 }

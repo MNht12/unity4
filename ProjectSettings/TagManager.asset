@@ -11,6 +11,7 @@ TagManager:
   - Enemy3
   - box
   - Boss
+  - bossUltPos
   layers:
   - Default
   - TransparentFX

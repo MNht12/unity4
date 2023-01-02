@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class BossUlt : MonoBehaviour
 {
-    public GameObject enemyBullet;
     public float damage;
-
     private bool isHit;
+    public GameObject theUlt;
+    private float CountDown = 5f;
+    private float noCD = 0f;
+    public float speed = 0.1f;
+    private float scale = 10;
+    Vector3 temp;
 
-    public UltGun gun;
-
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        laserTime();
     }
-
-    public void OnCollisionEnter2D(Collision2D collision) {
+    
+    private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player" && isHit == false)
         {
             isHit = true;
@@ -31,17 +26,23 @@ public class BossUlt : MonoBehaviour
             {
                 collision.gameObject.GetComponent<PlayerScript>().Damage();
             }
-            damageCooldown();
-            Destroy(enemyBullet, 10f);
-            // gun.despawn();
+
+            if (Time.time > noCD)
+            {
+                noCD = Time.time + CountDown;
+                isHit = false;
+            }
         }
-        
     }
 
-    IEnumerator damageCooldown()
+    public void laserTime()
     {
-        yield return new WaitForSeconds(1f);
-        isHit = false;
-        Debug.Log("damecooldoiwn");
+        temp = transform.localScale;
+        temp.x -= Time.deltaTime+speed;
+        transform.localScale = temp;
+        if (temp.x <= 0.2f)
+        {
+            Destroy(theUlt);
+        }
     }
 }

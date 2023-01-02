@@ -40,8 +40,9 @@ public class ult : MonoBehaviour
                 temp.x += Time.deltaTime+speed;
                 temp.y += Time.deltaTime+speed;
                 transform.localScale = temp;
-                hit = true;
             }
+            hit = true;
+
         }
                 
     }

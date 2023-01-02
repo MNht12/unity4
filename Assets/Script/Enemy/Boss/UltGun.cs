@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class UltGun : MonoBehaviour
 {
-    public float likelyhood;
+    public GameObject theUlt;
 
-    public GameObject enemy1Bullet;
-    public GameObject enemy1BulletClone;
+    public int likelyhood;
+    public float lifeTime;
+    private float lastSpawn;   
+
+    private float CountDown = 5f;
+    private float noCD;
+
     public GameObject gun;
 
-    private bool isSpawn;
+    private bool isSpawn = false;
+
 
     void Update()
     {
-        shoot();
+        shot();
     }
 
-    public void shoot()
+    public void shot()
     {
         if (Random.Range(0f, likelyhood) < 1 && isSpawn == false)
         {
+            Debug.Log("active true");
+            theUlt.SetActive(true);
             isSpawn = true;
-            enemy1BulletClone = Instantiate(enemy1Bullet, new Vector3(gun.transform.position.x,gun.transform.position.y - 0,0), transform.rotation) as GameObject;
-        }
-    }
+            noCD = Time.time + CountDown;
 
-    public void despawn()
-    {
-        isSpawn = false;
+            if (Time.time > noCD)
+            {
+                noCD = Time.time + CountDown;
+                theUlt.SetActive(false);
+                isSpawn = false;
+                Debug.Log("active false");
+            }
+        }
     }
 }

@@ -54,10 +54,8 @@ public class PlayerScript : MonoBehaviour
         {
             isDead = true;
             numberOfPepo = 0;
-            // Destroy(player);
             gameObject.SetActive(false);
             gameManager.gameOver();
-            Debug.Log("Dead");
         }
     }
 
